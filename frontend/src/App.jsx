@@ -144,32 +144,50 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans bg-neutral-50 text-neutral-900">
       
-      {/* 1. TOP UTILITY NAVBAR (White, small text, right-aligned) */}
-      <div className="bg-white border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center justify-end">
-          <div className="flex gap-6 text-[10px] font-bold text-neutral-700 tracking-wider">
+      {/* 1. TOP UTILITY NAVBAR (Premium dual-sided bar) */}
+      <div className="bg-neutral-50 border-b border-neutral-200/60 text-[10px] font-bold text-neutral-600 tracking-wider">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
+          <div className="hidden sm:flex items-center gap-4 text-neutral-500">
+            <span className="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-[#901c1d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              Hotline: +94 74 2216 579
+            </span>
+            <span className="text-neutral-300">|</span>
+            <span className="flex items-center gap-1 uppercase">
+              🚀 FREE SHIPPING ON ORDERS OVER LKR 5,000!
+            </span>
+          </div>
+          <div className="flex gap-6 ml-auto sm:ml-0">
             <a href="#" className="hover:text-[#901c1d] transition-colors">TRACK MY ORDER</a>
             <span className="text-neutral-300">|</span>
             <a href="#" className="hover:text-[#901c1d] transition-colors">JOURNAL</a>
             <span className="text-neutral-300">|</span>
             <a href="#" className="hover:text-[#901c1d] transition-colors">ABOUT US</a>
             <span className="text-neutral-300">|</span>
-            <a href="#" className="hover:text-[#901c1d] transition-colors">STORE LOCATOR</a>
+            <a href="#" className="hover:text-[#901c1d] transition-colors flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-[#901c1d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              STORE LOCATOR
+            </a>
           </div>
         </div>
       </div>
 
-      {/* 2. MAIN NAVBAR (Dark background, logo on left, menus in middle, search & cart on right) */}
-      <header className="bg-zinc-950 text-white z-50 sticky top-0 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      {/* 2. MAIN NAVBAR (White background, premium look with active/hover red text & under-indicators) */}
+      <header className="bg-white/95 backdrop-blur-md text-zinc-800 z-50 sticky top-0 shadow-sm border-b border-neutral-200/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           
-          {/* Logo container (White block with logo inside like the reference image) */}
+          {/* Logo container with rounded double border frames */}
           <div className="flex items-center flex-shrink-0">
-            <a href="/" className="bg-white px-4 py-2 flex items-center justify-center rounded shadow-inner hover:opacity-95 transition-opacity">
+            <a href="/" className="bg-white p-2 rounded-md shadow-sm border border-neutral-200/80 hover:scale-[1.02] transition-transform duration-300 flex items-center justify-center">
               <img 
                 src="/kafrilogo.png" 
                 alt="Kafri Fashion Logo" 
-                className="h-11 w-auto object-contain"
+                className="h-9 w-auto object-contain"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.parentNode.innerHTML = '<span class="text-[#901c1d] font-black text-xl tracking-tighter">KAFRI</span>';
@@ -178,56 +196,81 @@ function App() {
             </a>
           </div>
 
-          {/* Center Main Categories Menu */}
-          <nav className="hidden lg:flex items-center h-full text-xs font-extrabold tracking-wider">
+          {/* Center Main Categories Menu with Sleek Under-Line Indicators */}
+          <nav className="hidden lg:flex items-center h-full gap-8 text-[11px] font-black tracking-widest">
             <button 
               onClick={() => { setSelectedGender('WOMEN'); setSelectedSubCategory('ALL'); }}
-              className={`h-20 px-6 transition-colors flex items-center ${
-                selectedGender === 'WOMEN' ? 'bg-[#901c1d] text-white' : 'hover:bg-zinc-900 text-zinc-200'
+              className={`h-16 relative transition-colors uppercase ${
+                selectedGender === 'WOMEN' ? 'text-[#901c1d]' : 'text-zinc-600 hover:text-[#901c1d]'
               }`}
             >
-              WOMEN
+              <span className="relative py-1.5">
+                WOMEN
+                {selectedGender === 'WOMEN' && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-[#901c1d] rounded-full" />
+                )}
+              </span>
             </button>
             <button 
               onClick={() => { setSelectedGender('MEN'); setSelectedSubCategory('ALL'); }}
-              className={`h-20 px-6 transition-colors flex items-center ${
-                selectedGender === 'MEN' ? 'bg-[#901c1d] text-white' : 'hover:bg-zinc-900 text-zinc-200'
+              className={`h-16 relative transition-colors uppercase ${
+                selectedGender === 'MEN' ? 'text-[#901c1d]' : 'text-zinc-600 hover:text-[#901c1d]'
               }`}
             >
-              MEN
+              <span className="relative py-1.5">
+                MEN
+                {selectedGender === 'MEN' && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-[#901c1d] rounded-full" />
+                )}
+              </span>
             </button>
             <button 
               onClick={() => { setSelectedGender('UNISEX'); setSelectedSubCategory('ALL'); }}
-              className={`h-20 px-6 transition-colors flex items-center ${
-                selectedGender === 'UNISEX' ? 'bg-[#901c1d] text-white' : 'hover:bg-zinc-900 text-zinc-200'
+              className={`h-16 relative transition-colors uppercase ${
+                selectedGender === 'UNISEX' ? 'text-[#901c1d]' : 'text-zinc-600 hover:text-[#901c1d]'
               }`}
             >
-              UNISEX
+              <span className="relative py-1.5">
+                UNISEX
+                {selectedGender === 'UNISEX' && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-[#901c1d] rounded-full" />
+                )}
+              </span>
             </button>
             <button 
               onClick={() => { setSelectedGender('CRICKET'); setSelectedSubCategory('ALL'); }}
-              className={`h-20 px-6 transition-colors flex items-center ${
-                selectedGender === 'CRICKET' ? 'bg-[#901c1d] text-white' : 'hover:bg-zinc-900 text-zinc-200'
+              className={`h-16 relative transition-colors uppercase ${
+                selectedGender === 'CRICKET' ? 'text-[#901c1d]' : 'text-zinc-600 hover:text-[#901c1d]'
               }`}
             >
-              CRICKET
+              <span className="relative py-1.5">
+                CRICKET
+                {selectedGender === 'CRICKET' && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-[#901c1d] rounded-full" />
+                )}
+              </span>
             </button>
             <button 
               onClick={() => { setSelectedGender('ALL'); setSelectedSubCategory('ALL'); }}
-              className={`h-20 px-6 transition-colors flex items-center ${
-                selectedGender === 'ALL' && selectedSubCategory === 'ALL' ? 'bg-[#580202] text-white' : 'hover:bg-zinc-900 text-zinc-200'
+              className={`h-16 relative transition-colors uppercase ${
+                selectedGender === 'ALL' && selectedSubCategory === 'ALL' ? 'text-[#901c1d]' : 'text-zinc-600 hover:text-[#901c1d]'
               }`}
             >
-              GIFT CARD
+              <span className="relative py-1.5">
+                GIFT CARD
+                {selectedGender === 'ALL' && selectedSubCategory === 'ALL' && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-[#901c1d] rounded-full" />
+                )}
+              </span>
             </button>
           </nav>
 
           {/* Search bar & Cart area */}
           <div className="flex items-center gap-4 flex-grow max-w-md justify-end lg:flex-grow-0">
             
-            {/* Search Input Box */}
-            <div className="relative flex items-center bg-zinc-900 border border-zinc-800 rounded-md h-10 px-3 w-48 sm:w-64">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-zinc-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {/* Search Input Box with Focus Glow (Light mode matching white navbar) */}
+            <div className="relative flex items-center bg-neutral-100 border border-neutral-200 focus-within:border-[#901c1d] focus-within:ring-2 focus-within:ring-[#901c1d]/10 transition-all rounded-md h-10 px-3 w-48 sm:w-64">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-neutral-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input 
@@ -235,10 +278,10 @@ function App() {
                 placeholder="Search me!" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent text-xs w-full focus:outline-none placeholder-zinc-500 text-white"
+                className="bg-transparent text-xs w-full focus:outline-none placeholder-neutral-400 text-neutral-800"
               />
               {/* Category Dropdown */}
-              <div className="border-l border-zinc-800 pl-2 ml-2 hidden sm:block flex-shrink-0">
+              <div className="border-l border-neutral-300 pl-2 ml-2 hidden sm:block flex-shrink-0">
                 <select 
                   value={selectedCategoryFilter}
                   onChange={(e) => {
@@ -249,7 +292,7 @@ function App() {
                       setSelectedSubCategory(e.target.value);
                     }
                   }}
-                  className="bg-transparent text-[10px] text-zinc-400 focus:outline-none cursor-pointer pr-4 font-bold"
+                  className="bg-transparent text-[10px] text-neutral-500 focus:outline-none cursor-pointer pr-4 font-bold"
                 >
                   <option value="All Categories">Category</option>
                   <option value="TOPS">Tops</option>
@@ -261,23 +304,23 @@ function App() {
             </div>
 
             {/* Shopping Cart Bag with orange badge */}
-            <button className="relative p-2 text-zinc-300 hover:text-white transition-colors flex items-center gap-1">
+            <button className="relative p-2 text-zinc-600 hover:text-[#901c1d] hover:scale-105 transition-all flex items-center gap-1">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
               {cartTotalItems > 0 ? (
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-[#901c1d] text-white text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center shadow-md">
                   {cartTotalItems}
                 </span>
               ) : (
-                <span className="bg-amber-500/20 text-amber-500 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="bg-[#901c1d]/10 text-[#901c1d] text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   0
                 </span>
               )}
             </button>
 
             {/* Login / Register */}
-            <a href="#" className="hidden md:block text-xs font-bold text-zinc-300 hover:text-white transition-colors">
+            <a href="#" className="hidden md:block text-xs font-bold text-zinc-600 hover:text-[#901c1d] transition-colors">
               Login / Register
             </a>
           </div>
@@ -285,42 +328,66 @@ function App() {
         </div>
       </header>
 
-      {/* 3. SUB-NAVBAR (Black background, horizontal items) */}
-      <div className="bg-black text-white text-[11px] font-black tracking-widest border-t border-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center gap-8 overflow-x-auto whitespace-nowrap">
+      {/* 3. SUB-NAVBAR (Black background, capsule badge horizontal scroll items) */}
+      <div className="bg-black border-t border-zinc-900 py-2.5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-none">
           <button 
             onClick={() => { setSelectedSubCategory('ALL'); setSelectedGender('ALL'); }}
-            className={`hover:text-[#901c1d] transition-colors py-2 uppercase ${selectedSubCategory === 'ALL' ? 'text-[#901c1d]' : 'text-zinc-400'}`}
+            className={`px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-300 ${
+              selectedSubCategory === 'ALL' 
+                ? 'bg-[#901c1d] text-white shadow' 
+                : 'bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800'
+            }`}
           >
             ALL COLLECTIONS
           </button>
           <button 
             onClick={() => setSelectedSubCategory('TOPS')}
-            className={`hover:text-[#901c1d] transition-colors py-2 uppercase ${selectedSubCategory === 'TOPS' ? 'text-[#901c1d]' : 'text-zinc-400'}`}
+            className={`px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-300 ${
+              selectedSubCategory === 'TOPS' 
+                ? 'bg-[#901c1d] text-white shadow' 
+                : 'bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800'
+            }`}
           >
             TOPS
           </button>
           <button 
             onClick={() => setSelectedSubCategory('PANTS')}
-            className={`hover:text-[#901c1d] transition-colors py-2 uppercase ${selectedSubCategory === 'PANTS' ? 'text-[#901c1d]' : 'text-zinc-400'}`}
+            className={`px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-300 ${
+              selectedSubCategory === 'PANTS' 
+                ? 'bg-[#901c1d] text-white shadow' 
+                : 'bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800'
+            }`}
           >
             PANTS
           </button>
           <button 
             onClick={() => setSelectedSubCategory('SHORTS')}
-            className={`hover:text-[#901c1d] transition-colors py-2 uppercase ${selectedSubCategory === 'SHORTS' ? 'text-[#901c1d]' : 'text-zinc-400'}`}
+            className={`px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-300 ${
+              selectedSubCategory === 'SHORTS' 
+                ? 'bg-[#901c1d] text-white shadow' 
+                : 'bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800'
+            }`}
           >
             SHORTS
           </button>
           <button 
             onClick={() => setSelectedSubCategory('DENIMS')}
-            className={`hover:text-[#901c1d] transition-colors py-2 uppercase ${selectedSubCategory === 'DENIMS' ? 'text-[#901c1d]' : 'text-zinc-400'}`}
+            className={`px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-300 ${
+              selectedSubCategory === 'DENIMS' 
+                ? 'bg-[#901c1d] text-white shadow' 
+                : 'bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800'
+            }`}
           >
             DENIMS
           </button>
           <button 
             onClick={() => setSelectedSubCategory('HOODIES & SWEATERS')}
-            className={`hover:text-[#901c1d] transition-colors py-2 uppercase ${selectedSubCategory === 'HOODIES & SWEATERS' ? 'text-[#901c1d]' : 'text-zinc-400'}`}
+            className={`px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-300 ${
+              selectedSubCategory === 'HOODIES & SWEATERS' 
+                ? 'bg-[#901c1d] text-white shadow' 
+                : 'bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800'
+            }`}
           >
             HOODIES & SWEATERS
           </button>
@@ -334,7 +401,7 @@ function App() {
         <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/35 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-6xl mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Hero text section */}
           <div className="flex flex-col items-start justify-center">
@@ -387,7 +454,7 @@ function App() {
 
       {/* 5. DATABASE CONNECTION / DEMO STATUS BAR */}
       <div className="bg-zinc-100 border-b border-zinc-200 py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-neutral-500 font-medium">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-neutral-500 font-medium">
           <div className="flex items-center gap-2">
             <span className="font-bold text-neutral-700">Database Connection Status:</span>
             <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border ${
@@ -408,7 +475,7 @@ function App() {
       </div>
 
       {/* 6. MAIN SHOPPING CONTENT AREA */}
-      <main id="shop-section" className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main id="shop-section" className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         {/* Dynamic Filters header bar */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-neutral-200 pb-4 mb-8">
@@ -549,7 +616,7 @@ function App() {
 
       {/* 8. FOOTER (Black background, white brandings, bottom maroon touches) */}
       <footer className="bg-black text-neutral-400 border-t border-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <div className="bg-white p-2 w-32 rounded flex items-center justify-center mb-4">
               <img 
