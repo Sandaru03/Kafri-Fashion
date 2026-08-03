@@ -508,59 +508,99 @@ function App() {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#901c1d]" />
           </div>
         ) : (
-          /* Products Grid */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product) => (
-              <div 
-                key={product.id} 
-                className="group bg-white rounded-lg border border-neutral-200 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
-              >
-                {/* Product Image */}
-                <div className="aspect-w-1 aspect-h-1 relative overflow-hidden bg-neutral-100 h-80">
-                  <img 
-                    src={product.image_url} 
-                    alt={product.name} 
-                    className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300"
-                  />
-                  {/* Category label overlays */}
-                  <div className="absolute top-3 left-3 flex flex-col gap-1">
-                    <span className="bg-[#901c1d] text-white text-[9px] font-black px-2 py-0.5 rounded tracking-wider uppercase">
-                      {product.gender}
-                    </span>
-                    <span className="bg-zinc-950 text-white text-[9px] font-black px-2 py-0.5 rounded tracking-wider uppercase">
-                      {product.category}
-                    </span>
+          /* Products Grid with Skye Clothing Inspired Design */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            {filteredProducts.map((product) => {
+              const discountedPrice = parseFloat(product.price);
+              const originalPrice = Math.round(discountedPrice / 0.6 / 10) * 10;
+              const installmentPrice = Math.round(discountedPrice / 3);
+
+              return (
+                <div 
+                  key={product.id} 
+                  className="group bg-transparent overflow-hidden flex flex-col items-center"
+                >
+                  {/* Product Image */}
+                  <div className="w-full aspect-[3/4] relative overflow-hidden bg-neutral-100 rounded-sm shadow-sm border border-neutral-100">
+                    <img 
+                      src={product.image_url} 
+                      alt={product.name} 
+                      className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500"
+                    />
+                    
+                    {/* Orange discount ribbon on top-left */}
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-[#ff5500] text-white text-[10px] font-black px-2.5 py-1 uppercase tracking-wider">
+                        UP TO - 40%
+                      </span>
+                    </div>
+
+                    {/* Subtle watermarked logo on bottom-right */}
+                    <div className="absolute bottom-4 right-4 flex items-center gap-1 opacity-50 pointer-events-none">
+                      <div className="flex flex-col items-end">
+                        <span className="text-[9px] font-black text-white tracking-widest uppercase">KAFRI</span>
+                        <span className="text-[5px] font-bold text-white tracking-widest uppercase -mt-0.5">CLOTHING</span>
+                      </div>
+                    </div>
+
+                    {/* Premium Add to Bag Hover Overlay */}
+                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                      <button 
+                        onClick={() => addToCart(product)}
+                        className="bg-white text-zinc-950 font-black tracking-widest text-[10px] py-3 px-6 rounded shadow hover:bg-neutral-100 transition-colors w-11/12 uppercase"
+                      >
+                        ADD TO BAG
+                      </button>
+                    </div>
                   </div>
-                  {/* Price label */}
-                  <div className="absolute bottom-3 right-3">
-                    <span className="bg-white/95 backdrop-blur-sm text-neutral-900 text-xs font-bold px-2.5 py-1 rounded shadow-sm">
-                      LKR {parseFloat(product.price).toLocaleString()}
-                    </span>
+
+                  {/* Product Details Section (Center aligned) */}
+                  <div className="pt-5 pb-1 flex flex-col items-center w-full text-center">
+                    {/* Product Name */}
+                    <h3 className="text-sm font-black text-neutral-900 tracking-wider uppercase mb-1.5 leading-snug">
+                      {product.name}
+                    </h3>
+
+                    {/* Price Block */}
+                    <div className="flex items-center justify-center gap-3 text-sm font-black mb-1.5">
+                      <span className="text-zinc-400 line-through text-xs font-semibold">
+                        රු.{originalPrice.toLocaleString('en-LK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                      <span className="text-neutral-800">
+                        රු.{discountedPrice.toLocaleString('en-LK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+
+                    {/* Installments Block 1 (Mintpay) */}
+                    <div className="flex items-center justify-center gap-1.5 text-[9px] text-zinc-500 font-bold leading-tight">
+                      <span>3 X Rs. {installmentPrice.toLocaleString('en-LK', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} or 8% Cashback with</span>
+                      <span className="bg-[#0f172a] text-white px-1.5 py-0.5 rounded-[2px] text-[7px] font-black tracking-tighter italic uppercase">
+                        mintpay
+                      </span>
+                      <button className="text-zinc-400 hover:text-zinc-600 transition-colors" title="More info">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Installments Block 2 (Koko) */}
+                    <div className="flex items-center justify-center gap-1.5 text-[9px] text-zinc-500 font-bold mt-1 leading-tight">
+                      <span>or 3 X රු. {installmentPrice.toLocaleString('en-LK', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} with</span>
+                      <span className="text-[#a855f7] bg-purple-50 border border-purple-100 px-1 py-0.25 rounded-[2px] text-[7.5px] font-black tracking-tight lowercase">
+                        koko
+                      </span>
+                      <button className="text-zinc-400 hover:text-zinc-600 transition-colors" title="More info">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </button>
+                    </div>
+
                   </div>
                 </div>
-                
-                {/* Product Details */}
-                <div className="p-5 flex flex-col flex-grow">
-                  <h3 className="text-base font-extrabold text-neutral-900 group-hover:text-[#901c1d] transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-neutral-500 text-xs mt-2 flex-grow line-clamp-2 leading-relaxed">
-                    {product.description}
-                  </p>
-                  
-                  {/* Add to Cart button in white with black borders/text, hover effect to brandRed */}
-                  <button 
-                    onClick={() => addToCart(product)}
-                    className="mt-5 w-full border border-neutral-900 bg-white text-neutral-900 py-2.5 px-4 rounded text-xs font-extrabold hover:bg-neutral-950 hover:text-white transition-colors flex items-center justify-center gap-2"
-                  >
-                    ADD TO BAG
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
