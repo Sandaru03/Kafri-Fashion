@@ -38,7 +38,10 @@ export default {
         brandDark: '#121212',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        cinzel: ['Cinzel', 'serif'],
+        signature: ['Great Vibes', 'cursive'],
       }
     },
   },

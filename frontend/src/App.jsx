@@ -394,85 +394,73 @@ function App() {
         </div>
       </div>
 
-      {/* 4. PREMIUM HERO BANNER (Maroon theme with deep gradients, White details) */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#580202] via-[#901c1d] to-[#580202] text-white py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
-        
-        {/* Soft glowing decorations */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/35 rounded-full blur-3xl pointer-events-none" />
+      {/* 4. PHOTO-REALISTIC EDITORIAL HERO BANNER (hero1.jpg background with clean text overlays) */}
+      <section 
+        className="relative overflow-hidden bg-zinc-950 min-h-[480px] lg:h-[620px] flex items-center px-4 sm:px-6 lg:px-8 border-b border-[#580202] bg-cover bg-center py-12 lg:py-0"
+        style={{ backgroundImage: "url('/hero1.jpg')" }}
+      >
+        {/* Premium dark gradient overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/20 pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-[#901c1d]/10 mix-blend-multiply pointer-events-none z-0" />
 
-        <div className="relative max-w-6xl mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Soft glowing ambient lights */}
+        <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#901c1d]/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-amber-500/10 rounded-full blur-[90px] pointer-events-none" />
+
+        <div className="relative max-w-6xl mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full h-full">
           
-          {/* Hero text section */}
-          <div className="flex flex-col items-start justify-center">
-            <span className="inline-block uppercase tracking-widest text-xs font-bold text-white/80 mb-3 bg-white/10 px-4 py-1.5 rounded-full backdrop-blur-sm border border-white/20">
-              KAFRI FASHION OFFICIAL STORE
-            </span>
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight max-w-xl mb-6 leading-tight">
-              Where Style <br/>Meets Comfort.
-            </h1>
-            <p className="text-sm sm:text-base text-white/90 max-w-lg mb-8 leading-relaxed font-light">
-              Explore the latest collections designed using the finest fabrics. Find your perfect fit across Denim, Tops, Sweaters, and Cricket gears with Kafri.
-            </p>
-            <div className="flex flex-wrap gap-4">
+          {/* Left Text & Detail Columns */}
+          <div className="flex flex-col items-start justify-center z-10 space-y-6">
+            
+            {/* Main Typography Header Section */}
+            <div className="relative">
+              {/* Elegant Accent Subtitle */}
+              <span className="text-xs sm:text-sm font-bold tracking-[0.25em] text-amber-200/90 uppercase block mb-2">
+                URBAN & CASUAL ELEGANCE
+              </span>
+              
+              {/* Headline Title */}
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-cinzel font-black tracking-wider text-white uppercase leading-[1.02]">
+                KAFRI <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-white to-amber-200">
+                  COLLECTION
+                </span>
+              </h1>
+              
+              {/* Natural Editorial Description (Clean human-designed text, no artificial box/bar) */}
+              <p className="text-xs sm:text-sm text-neutral-300 font-light tracking-wide mt-4 max-w-md leading-relaxed">
+                Discover straight leg chino pants & handcrafted streetwear, designed for ultimate comfort, durability, and luxury daily fits.
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <a 
                 href="#shop-section" 
-                className="bg-white text-[#901c1d] px-8 py-3.5 rounded text-xs font-black tracking-widest uppercase hover:bg-neutral-100 transition-colors shadow-lg"
+                className="bg-[#901c1d] hover:bg-[#a51f20] text-white hover:scale-[1.03] active:scale-[0.98] transition-all px-8 py-3.5 rounded-full text-xs font-black tracking-widest uppercase inline-flex items-center gap-2.5 shadow-xl shadow-[#901c1d]/40 group border border-white/10"
               >
-                SHOP COLLECTION
+                SHOP NOW
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
               </a>
               <a 
-                href="#" 
-                className="border-2 border-white text-white px-8 py-3.5 rounded text-xs font-black tracking-widest uppercase hover:bg-white/10 transition-colors"
+                href="#shop-section" 
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white hover:scale-[1.03] active:scale-[0.98] transition-all px-7 py-3.5 rounded-full text-xs font-black tracking-widest uppercase inline-flex items-center gap-2 shadow-lg"
               >
-                DISCOVER MORE
+                EXPLORE CATALOG
               </a>
             </div>
+
           </div>
 
-          {/* Hero visual elements - Unsplash high fashion photo overlaid with maroon theme elements */}
-          <div className="relative mx-auto lg:ml-auto max-w-md lg:max-w-none w-full aspect-w-4 aspect-h-5 lg:aspect-square">
-            <div className="absolute inset-0 bg-[#901c1d]/10 rounded-xl border border-white/20 -rotate-3 z-0" />
-            <div className="absolute inset-0 bg-black/20 rounded-xl border border-white/10 rotate-3 z-0" />
-            
-            <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl border-4 border-white/95">
-              <img 
-                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop" 
-                alt="Kafri Fashion Models Collection" 
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-white text-xs font-bold tracking-widest uppercase">Premium Fabrics. Perfect Cuts.</p>
-                <p className="text-white/80 text-[10px] uppercase mt-1">Starting from LKR 950.00</p>
-              </div>
-            </div>
-          </div>
+          {/* Right Column: Empty spacer column */}
+          <div className="hidden lg:block pointer-events-none" />
 
         </div>
       </section>
 
-      {/* 5. DATABASE CONNECTION / DEMO STATUS BAR */}
-      <div className="bg-zinc-100 border-b border-zinc-200 py-2">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-neutral-500 font-medium">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-neutral-700">Database Connection Status:</span>
-            <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border ${
-              dbStatus.includes('Connected') 
-                ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
-                : 'bg-amber-50 text-amber-700 border-amber-200'
-            }`}>
-              <span className={`w-1.5 h-1.5 mr-1.5 rounded-full ${
-                dbStatus.includes('Connected') ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
-              }`} />
-              {dbStatus}
-            </span>
-          </div>
-          <div>
-            Showing: <span className="font-bold text-neutral-700">{filteredProducts.length} items</span>
-          </div>
-        </div>
-      </div>
+
 
       {/* 6. MAIN SHOPPING CONTENT AREA */}
       <main id="shop-section" className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
